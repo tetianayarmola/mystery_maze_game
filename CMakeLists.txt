@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30.2)
+cmake_minimum_required(VERSION 3.29.5)
 
 project(MysteryMaze
 	VERSION 1.0.0
