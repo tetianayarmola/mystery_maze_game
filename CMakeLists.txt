@@ -36,10 +36,11 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 
 # ${ } brackets for internal use
 #creates a new variable set(VARIABLE_NAME VariableValue), defines a new target
+set(MYSTERY_MAZE_ENGINE_TARGET_NAME MysteryMazeEngine)
 set(MYSTERY_MAZE_GAME_TARGET_NAME MysteryMazeGame)
 
-
 #Imports the rest of the code in another CMakeLists.txt file located in subdirectory
-add_subdirectory(MysteryMaze)
+add_subdirectory(MysteryMazeEngine)
+add_subdirectory(MysteryMazeGame)
 
 
