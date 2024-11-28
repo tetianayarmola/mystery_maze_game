@@ -1,6 +1,8 @@
 //include header file
 #include "framework/Application.h"
-#include <iostream>
+#include "framework/Core.h"
+#include <stdio.h> //printf() is faster than cout <<
+//#include <iostream>
 
 
 
@@ -45,7 +47,8 @@ namespace mz
 			}
 
 			//refresh, frames per second
-			accumulatedTime += _mTickClock.restart().asSeconds(); //adds the time which elapsed before reset and converts it to float format
+			float frameDeltaTime = _mTickClock.restart().asSeconds(); //adds the time which elapsed before reset and converts it to float format
+			accumulatedTime += frameDeltaTime;
 			while (accumulatedTime > targetDeltaTime) //if true we need to update
 			{
 				//reducing accumulated time
@@ -56,6 +59,8 @@ namespace mz
 				RenderInternal(); 
 
 			}
+
+			LOG("Ticking at framerate: %f", 1.f / frameDeltaTime);
 		}
 	}
 
@@ -99,7 +104,7 @@ namespace mz
 	//specifying what happens on each Tick
 	void Application::Tick(float deltaTime)
 	{
-		std::cout << "Ticking at framerate: " << 1.f / deltaTime << std::endl;
+		
 	}
 	//<- Virtual functions definitions end ->
 }
