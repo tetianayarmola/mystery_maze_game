@@ -6,15 +6,21 @@
 add_library(${MYSTERY_MAZE_ENGINE_TARGET_NAME} STATIC
 	#${CMAKE_CURRENT_SOURCE_DIR}/src/main.cpp
 	#tells to include other project files in src/framework/ (.cpp files) and include/framework (header .h files)
-	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Application.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Application.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Application.cpp
 
-	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/include/framework/World.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/World.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Actor.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Actor.cpp
+
 	${CMAKE_CURRENT_SOURCE_DIR}/include/framework/Core.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/framework/Core.cpp
 
 	#includes EntryPoint files to handle main
-	${CMAKE_CURRENT_SOURCE_DIR}/src/EntryPoint.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/EntryPoint.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/EntryPoint.cpp
 )
 
 # PUBLICLY including header file Application.h so it can be seen by Application.cpp and other files

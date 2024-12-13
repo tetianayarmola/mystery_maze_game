@@ -1,8 +1,9 @@
+// <-- Application is our entire game -->
+
 //include header file
 #include "framework/Application.h"
 #include "framework/Core.h"
-#include <stdio.h> //printf() is faster than cout <<
-//#include <iostream>
+#include "framework/World.h"
 
 
 
@@ -14,7 +15,9 @@ namespace mz
 		// initialiser list. Preferable way when you constructed without anything else
 		: _mWindow{ sf::VideoMode(1920, 1920), "Mystery Maze" },
 		_mTargetFrameRate{ 60.f },
-		_mTickClock{} 
+		_mTickClock{},
+		//making sure currentWorld starts with the null pointer
+		currentWorld{nullptr}
 		
 	{
 		//nothing in here
@@ -60,15 +63,22 @@ namespace mz
 
 			}
 
-			LOG("Ticking at framerate: %f", 1.f / frameDeltaTime);
+			//LOG("Ticking at framerate: %f", 1.f / frameDeltaTime);
 		}
 	}
 
 
-	// <- Template functions definitions to NOT be changed by user / customer ->
+	// <- Template functions definitions (core logic, not modifiable) ->
 	void Application::TickInternal(float deltaTime)
 	{
 		Tick(deltaTime);
+
+		//if the currentWorld is there
+		if (currentWorld)
+		{
+			currentWorld->StartPlayInternal();
+			currentWorld->TickInternal(deltaTime);
+		}
 	}
 
 
@@ -87,7 +97,7 @@ namespace mz
 	//<- Temlate functions definitions end ->
 
 
-	//<- Virtual functions definitions to be changed by user/customer ->
+	//<- Virtual functions definitions ( customer modifiable ) ->
 
 	//specifying what to render
 	void Application::Render()
