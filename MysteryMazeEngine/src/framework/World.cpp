@@ -39,9 +39,24 @@ namespace mz
 		_mPendingActors.clear(); 
 
 		//update the _mActors list
-		for (shared<Actor> actor : _mActors)
+		//we use the iterators loop as it is easier to add or remove and update items
+		//if we call Destroy on any Actor, it should be destroyed in the next loop iteration
+		for (auto iter = _mActors.begin(); iter != _mActors.end(); )
 		{
-			actor->Tick(deltaTime);
+			if (iter->get()->IsPendingDestroy()) //if Actor Destroy() did set IsPendingDestroy = true
+			{
+				//then remove the Actor[iter] from the list
+				iter = _mActors.erase(iter);
+
+				//no need in iter++ as erase() returns to the next iteraror after removing
+			}
+			else //if destroying is not the case, we incre
+			{
+				//we Tick the Actor[iter]
+				iter->get()->Tick(deltaTime);
+				//and we increment the iterator
+				++iter;
+			}
 		}
 
 		Tick(deltaTime);

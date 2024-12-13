@@ -1,11 +1,13 @@
 #pragma once
+#include "framework/Object.h"
 
 namespace mz
 {
 	//declare World
 	class World;
 	//create class for everything which will be spawned/added to the World
-	class Actor
+	//make class to be inheriting from Object
+	class Actor : public Object
 	{
 	public:
 		//tell that the World is an owner of Actor, passing as an argument

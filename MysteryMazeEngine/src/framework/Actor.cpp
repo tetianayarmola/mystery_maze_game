@@ -13,9 +13,11 @@ namespace mz
 
 	}
 
+	//Actor destructor
 	Actor::~Actor()
 	{
-		//empty, Actor destructor
+		//as inheriting Destroy() from Object:
+		LOG("Actor destroyed"); 
 	}
 
 	// template functions (core logic, not modifiable)

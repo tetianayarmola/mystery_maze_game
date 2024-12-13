@@ -17,8 +17,27 @@ namespace mz
 		//because it is a weak reference, we have to lock it first
 		//then spawn a regular actor
 		newWorld.lock()->SpawnActor<Actor>();
-		newWorld.lock()->SpawnActor<Actor>();
-		newWorld.lock()->SpawnActor<Actor>();
+		_mActorToDestroy = newWorld.lock()->SpawnActor<Actor>();
+		counter = 0;
+	}
+	void GameApplication::Tick(float deltaTime)
+	{
+		//for test purposes
+		counter += deltaTime;
+		//after 2 seconds
+		if (counter > 2.f)
+		{
+			//if actor is not destroyed already
+			//expired means that the corresponding pointer is removed, thus does not exist anymore
+			if (!_mActorToDestroy.expired()) 
+			{
+				//lock it first to get a corresponding share pointer
+				// and ask the Actor to be destroyed
+				_mActorToDestroy.lock()->Destroy();
+
+			}
+			
+		}
 	}
 }
 
