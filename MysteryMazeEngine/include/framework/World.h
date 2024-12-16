@@ -1,6 +1,7 @@
 #pragma once
 #include "framework/Core.h" //to be able to use weak/smart pointer
 
+#include <SFML/Graphics.hpp>
 
 namespace mz 
 {
@@ -21,6 +22,9 @@ namespace mz
 
 		//function to Tick the World
 		void TickInternal(float deltaTime); //template function (core logic, not modifiable)
+
+		// & - takes RenderWindow as a reference
+		void Render(sf::RenderWindow& window);
 
 		//when we need smth to be inherited, we need a virtual destructor:
 		virtual ~World();

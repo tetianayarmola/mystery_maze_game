@@ -98,13 +98,11 @@ namespace mz
 	//specifying what to render
 	void Application::Render()
 	{
-		//create a circle with the radius
-		sf::CircleShape circle{ 30 };
-		circle.setOrigin(30, 30); //sets pivit point tothe centre (diameter/2)
-		circle.setPosition(_mWindow.getSize().x / 2.f, _mWindow.getSize().y / 2.f); //coordinates x and y of the  game window divided by 2, sets to the centre
-		circle.setFillColor(sf::Color::White);
-		//tell the window to draw the circle
-		_mWindow.draw(circle);
+		//ask Application to render the World
+		if (currentWorld)
+		{
+			currentWorld->Render(_mWindow);
+		}
 	}
 
 	//specifying what happens on each Tick

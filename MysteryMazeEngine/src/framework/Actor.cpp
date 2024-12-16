@@ -12,7 +12,8 @@ namespace mz
 		
 
 	{
-
+		//call the function to set texture
+		SetTexture(texturePath);
 	}
 
 	//Actor destructor
@@ -55,5 +56,10 @@ namespace mz
 		int textureWidth = _mTexture.getSize().x;
 		int textureHeight = _mTexture.getSize().y;
 		_mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });
+	}
+	void Actor::Render(sf::RenderWindow& window)
+	{
+		//ask window to draw a sprite
+		window.draw(_mSprite);
 	}
 }

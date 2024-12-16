@@ -25,6 +25,8 @@ namespace mz
 		virtual void Tick(float deltaTime); // no need in Tick Internal() here
 		//function to assign a texture
 		void SetTexture(const std::string& texturePath);
+		//creating way to render actors/sprites
+		void Render(sf::RenderWindow& window);
 
 	private:
 		//specify the owner locally as well

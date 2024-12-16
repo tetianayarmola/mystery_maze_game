@@ -62,6 +62,15 @@ namespace mz
 		Tick(deltaTime);
 	}
 
+	void World::Render(sf::RenderWindow& window)
+	{
+		//loop through all Actors and ask them to be rendered
+		for (auto& actor : _mActors) //put auto as a reference so we don't have a copy
+		{
+			actor->Render(window);
+		}
+	}
+
 	World::~World()
 	{
 		//is empty for the destructor
