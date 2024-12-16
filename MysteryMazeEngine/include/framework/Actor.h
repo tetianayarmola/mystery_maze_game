@@ -37,6 +37,6 @@ namespace mz
 		// making Actor renderable 
 		//ctrl + click on Sprite -> Sprite is smth drawable and transformable (set position, rotation, move, etc)
 		sf::Sprite _mSprite;
-		sf::Texture _mTexture;
+		shared<sf::Texture> _mTexture;
 	};
 }
