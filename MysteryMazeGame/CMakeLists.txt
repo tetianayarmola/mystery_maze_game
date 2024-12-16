@@ -38,6 +38,7 @@ CopyLibDirToTarget(${MYSTERY_MAZE_ENGINE_TARGET_NAME} ${MYSTERY_MAZE_GAME_TARGET
 set(RESOURCE_FOLDER_NAME "assets")
 set(RESOURCE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${RESOURCE_FOLDER_NAME}")
 
+#coppy resources to the final build
 add_custom_command(
 	TARGET ${MYSTERY_MAZE_GAME_TARGET_NAME}
 	POST_BUILD
@@ -45,6 +46,14 @@ add_custom_command(
 	${CMAKE_COMMAND} -E copy_directory
 	${RESOURCE_SOURCE_DIR}
 	$<TARGET_FILE_DIR:${MYSTERY_MAZE_GAME_TARGET_NAME}>/${RESOURCE_FOLDER_NAME}
+)
+
+#include config file config.in
+configure_file(
+	#tell to make configuration:
+	"config.h.in"
+	#tell to put it where the game is in folder with a new name:
+	"${CMAKE_CURRENT_SOURCE_DIR}/include/config.h" ESCAPE_QUOTES
 )
 
 

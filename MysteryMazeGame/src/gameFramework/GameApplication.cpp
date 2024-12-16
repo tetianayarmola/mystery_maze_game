@@ -1,6 +1,7 @@
 #include "gameFramework/GameApplication.h"
 #include "framework/World.h"
 #include "framework/Actor.h"
+#include "config.h"
 
 mz::Application* GetApplication()
 {
@@ -19,7 +20,7 @@ namespace mz
 		//then spawn a regular actor
 		newWorld.lock()->SpawnActor<Actor>();
 		_mActorToDestroy = newWorld.lock()->SpawnActor<Actor>();
-		_mActorToDestroy.lock()->SetTexture("C:/CMake_Projects/Uni_Coursework/CMake_learning_projects/MysteryMaze/MysteryMazeGame/assets/SpaceShooterRedux/PNG/playerShip2_red.png");
+		_mActorToDestroy.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png"); //GetResourceDir() is defined in config file
 		counter = 0;
 	}
 	void GameApplication::Tick(float deltaTime)

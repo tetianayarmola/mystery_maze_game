@@ -1,0 +1,14 @@
+#pragma once
+#include <string>
+
+//this config file helps identify and find resource files location
+
+std::string GetResourceDir()
+{
+//preprocess check
+#ifdef NDEBUG //release mode
+	return "@RESOURCE_FOLDER_NAME@/";
+#else // debug mode
+	return "@RESOURCE_SOURCE_DIR@/";
+#endif
+}
