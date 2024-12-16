@@ -55,6 +55,5 @@ namespace mz
 		int textureWidth = _mTexture.getSize().x;
 		int textureHeight = _mTexture.getSize().y;
 		_mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });
-
 	}
 }
