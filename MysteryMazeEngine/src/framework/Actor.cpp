@@ -47,12 +47,12 @@ namespace mz
 	// customer modifiable functions
 	void Actor::StartPlay()
 	{
-		LOG("Actor start play");
+		
 	}
 	
 	void Actor::Tick(float deltaTime)
 	{
-		LOG("Actor Ticking");
+		
 	}
 	//function to set a texture to sprite
 	void Actor::SetTexture(const std::string& texturePath)

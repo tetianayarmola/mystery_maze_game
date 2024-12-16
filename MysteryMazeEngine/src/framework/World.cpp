@@ -79,11 +79,11 @@ namespace mz
 
 	void World::StartPlay() //customer modifiable
 	{
-		LOG("Started to Play");
+		
 	}
 
 	void World::Tick(float deltaTime) //customer modifiable
 	{
-		LOG("Ticking at frame rate: %f", 1.f / deltaTime);
+		
 	}
 }
