@@ -59,3 +59,4 @@ CopyLibToTarget(sfml-graphics ${MYSTERY_MAZE_ENGINE_TARGET_NAME})
 CopyLibToTarget(sfml-audio ${MYSTERY_MAZE_ENGINE_TARGET_NAME})
 CopyLibToTarget(sfml-system ${MYSTERY_MAZE_ENGINE_TARGET_NAME})
 CopyLibToTarget(sfml-window ${MYSTERY_MAZE_ENGINE_TARGET_NAME})
+ 

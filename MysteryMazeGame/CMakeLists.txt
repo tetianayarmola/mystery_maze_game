@@ -34,4 +34,17 @@ endfunction()
 #use function to copy directory with SFML files from GameEngine
 CopyLibDirToTarget(${MYSTERY_MAZE_ENGINE_TARGET_NAME} ${MYSTERY_MAZE_GAME_TARGET_NAME})
 
+#creating variables for assets for post build
+set(RESOURCE_FOLDER_NAME "assets")
+set(RESOURCE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${RESOURCE_FOLDER_NAME}")
+
+add_custom_command(
+	TARGET ${MYSTERY_MAZE_GAME_TARGET_NAME}
+	POST_BUILD
+	COMMAND
+	${CMAKE_COMMAND} -E copy_directory
+	${RESOURCE_SOURCE_DIR}
+	$<TARGET_FILE_DIR:${MYSTERY_MAZE_GAME_TARGET_NAME}>/${RESOURCE_FOLDER_NAME}
+)
+
 
