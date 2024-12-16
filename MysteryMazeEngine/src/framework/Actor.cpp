@@ -1,6 +1,8 @@
 #include "framework/Actor.h"
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
+#include "framework/MathUtility.h"
+
 namespace mz
 {
 	Actor::Actor(World* ownedByWorld, const std::string& texturePath)
@@ -68,10 +70,61 @@ namespace mz
 		int textureWidth = _mTexture->getSize().x;
 		int textureHeight = _mTexture->getSize().y;
 		_mSprite.setTextureRect(sf::IntRect{ sf::Vector2i{}, sf::Vector2i{textureWidth, textureHeight} });
+		//set Sprite pivit point to the centre
+		CenterPivit();
 	}
 	void Actor::Render(sf::RenderWindow& window)
 	{
 		//ask window to draw a sprite
 		window.draw(_mSprite);
+	}
+
+
+	void Actor::SetActorLocation(const sf::Vector2f& newLocation)
+	{
+		_mSprite.setPosition(newLocation);
+	}
+
+	void Actor::SetActorRotation(float newRotation)
+	{
+		_mSprite.setRotation(newRotation);
+	}
+
+	void Actor::AddActorLocationOffset(const sf::Vector2f& offsetAmount)
+	{
+		SetActorLocation(GetActorLocation() + offsetAmount);
+	}
+
+	void Actor::AddActorRotationOffset(float offsetAmount)
+	{
+		SetActorRotation(GetActorRotation() + offsetAmount);
+	}
+
+	sf::Vector2f Actor::GetActorLocation() const
+	{
+		return _mSprite.getPosition();
+	}
+
+	float Actor::GetActorRotation() const
+	{
+		return _mSprite.getRotation();
+	}
+
+	//determine Actor direction
+	sf::Vector2f Actor::GetActorForwardDirection() const
+	{
+		return RotationToVector(GetActorRotation());
+	}
+
+	sf::Vector2f Actor::GetActorRightDirection() const
+	{
+		return RotationToVector(GetActorRotation() + 90.f);
+	}
+	void Actor::CenterPivit()
+	{
+		//gets the bounts of the sprite
+		sf::FloatRect bound = _mSprite.getGlobalBounds();
+		//set pivit to the centre
+		_mSprite.setOrigin(bound.width / 2.f, bound.height / 2.f);
 	}
 }

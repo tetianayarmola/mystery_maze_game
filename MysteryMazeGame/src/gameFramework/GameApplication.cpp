@@ -21,6 +21,8 @@ namespace mz
 		newWorld.lock()->SpawnActor<Actor>();
 		_mActorToDestroy = newWorld.lock()->SpawnActor<Actor>();
 		_mActorToDestroy.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png"); //GetResourceDir() is defined in config file
+		_mActorToDestroy.lock()->SetActorLocation(sf::Vector2f(300.f, 490.f)); //move to the centre of the screen
+		_mActorToDestroy.lock()->SetActorRotation(90.f); //rotate 90 degree
 		counter = 0;
 	}
 	void GameApplication::Tick(float deltaTime)
