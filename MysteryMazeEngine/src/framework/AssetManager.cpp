@@ -38,6 +38,25 @@ namespace mz
 		return shared<sf::Texture> {nullptr};
 	}
 
+	void AssetManager::CleanCycle()
+	{
+		//checks if texture still exist
+		for (auto iter = _mLoadedTextureMap.begin(); iter != _mLoadedTextureMap.end(); )
+		{
+			//if nothing else holds a shared pointer of the texture
+			if (iter->second.unique())
+			{
+				LOG("! - cleaning texture: %s", iter->first);
+				//it is no longer needed -> remove
+				iter = _mLoadedTextureMap.erase(iter);
+			}
+			else
+			{
+				++iter;
+			}
+		}
+	}
+
 	AssetManager::AssetManager()
 	{
 	}

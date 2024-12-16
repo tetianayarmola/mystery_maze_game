@@ -44,6 +44,10 @@ namespace mz
 		//a shared pointer to World
 		//using shared because it has an ownership (World type belongs to Application)
 		shared<World> currentWorld;
+
+		//<-Assetmanager CleanCycle ->
+		sf::Clock _mCleanCycleClock;
+		float _mCleanCycleInterval;
 	};
 
 	//create a definition 

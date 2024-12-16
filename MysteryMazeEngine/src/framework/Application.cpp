@@ -4,6 +4,7 @@
 #include "framework/Application.h"
 #include "framework/Core.h"
 #include "framework/World.h"
+#include "framework/AssetManager.h"
 
 
 
@@ -14,7 +15,9 @@ namespace mz
 		_mTargetFrameRate{ 60.f },
 		_mTickClock{},
 		//making sure currentWorld starts with the null pointer
-		currentWorld{ nullptr }
+		currentWorld{ nullptr },
+		_mCleanCycleClock{},
+		_mCleanCycleInterval{2.f} //2 seconds
 	{
 
 	}
@@ -56,10 +59,9 @@ namespace mz
 
 				//Rendering
 				RenderInternal(); 
-
+				AssetManager::Get().CleanCycle();
 			}
 
-			//LOG("Ticking at framerate: %f", 1.f / frameDeltaTime);
 		}
 	}
 
@@ -74,6 +76,14 @@ namespace mz
 		{
 			currentWorld->StartPlayInternal();
 			currentWorld->TickInternal(deltaTime);
+		}
+
+		//check if the CycleClean interval passed and clean asset manager
+		if (_mCleanCycleClock.getElapsedTime().asSeconds() >= _mCleanCycleInterval)
+		{
+			//restart the clock
+			_mCleanCycleClock.restart();
+			//ask AssetManager to clean 
 		}
 	}
 

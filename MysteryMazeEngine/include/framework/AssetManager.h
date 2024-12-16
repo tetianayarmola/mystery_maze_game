@@ -11,7 +11,7 @@ namespace mz
 		static AssetManager& Get();
 		//texture loading functionality
 		shared<sf::Texture> LoadTexture(const std::string& path);
-
+		void CleanCycle();
 	//protected constructor - allowing anyone else to construct but only inside of the class
 	protected:
 		AssetManager();
