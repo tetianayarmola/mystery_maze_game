@@ -34,6 +34,15 @@ namespace mz
 
 	}
 
+	void Actor::TickInternal(float deltaTime)
+	{
+		//tick the actor if not pending to destroy, called from World.cpp
+		if (!IsPendingDestroy())
+		{
+			Tick(deltaTime);
+		}
+	}
+
 
 	// customer modifiable functions
 	void Actor::StartPlay()

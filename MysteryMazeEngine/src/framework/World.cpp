@@ -50,10 +50,10 @@ namespace mz
 
 				//no need in iter++ as erase() returns to the next iteraror after removing
 			}
-			else //if destroying is not the case, we incre
+			else //if destroying is not the case, we increase
 			{
 				//we Tick the Actor[iter]
-				iter->get()->Tick(deltaTime);
+				iter->get()->TickInternal(deltaTime);
 				//and we increment the iterator
 				++iter;
 			}

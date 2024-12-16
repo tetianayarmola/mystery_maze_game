@@ -21,6 +21,7 @@ namespace mz
 
 		//below functions are in public to be able to overwrite them and call in the child class
 		void StartPlayInternal(); //template function (core logic, not modifiable)
+		void TickInternal(float deltaTime); //call it from the World.cpp
 		virtual void StartPlay(); //customer modifiable
 		virtual void Tick(float deltaTime); // no need in Tick Internal() here
 		//function to assign a texture
