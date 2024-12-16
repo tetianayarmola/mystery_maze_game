@@ -9,18 +9,14 @@
 
 namespace mz
 {
-	//creating definition of the default constructor
-	Application::Application()
-		//initialise window
-		// initialiser list. Preferable way when you constructed without anything else
-		: _mWindow{ sf::VideoMode(1920, 1920), "Mystery Maze" },
+	Application::Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style)
+		: _mWindow{ sf::VideoMode(windowWidth, windowHeight), title, style },
 		_mTargetFrameRate{ 60.f },
 		_mTickClock{},
 		//making sure currentWorld starts with the null pointer
-		currentWorld{nullptr}
-		
+		currentWorld{ nullptr }
 	{
-		//nothing in here
+
 	}
 
 	void Application::Run()

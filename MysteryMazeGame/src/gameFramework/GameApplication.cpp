@@ -10,6 +10,7 @@ mz::Application* GetApplication()
 namespace mz
 {
 	GameApplication::GameApplication()
+		: Application{600, 980, "Mystery Maze", sf::Style::Titlebar | sf::Style::Close} // titlebar or close, no resize 
 	{
 		//load and run the World in game
 		weak<World> newWorld = LoadWorld<World>();

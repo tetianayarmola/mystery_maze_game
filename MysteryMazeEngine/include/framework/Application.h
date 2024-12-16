@@ -15,8 +15,8 @@ namespace mz
 	class Application
 	{
 	public:
-		//creating constructor
-		Application();
+		//creating constructor for Application and defining variables
+		Application(unsigned int windowWidth, unsigned int windowHeight, const std::string& title, sf::Uint32 style );
 		//create function
 		void Run();
 
