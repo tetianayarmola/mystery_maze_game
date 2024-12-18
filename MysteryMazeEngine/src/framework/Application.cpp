@@ -66,6 +66,11 @@ namespace mz
 	}
 
 
+	sf::Vector2u Application::GetWindowSize() const
+	{
+		return _mWindow.getSize();
+	}
+
 	// <- Template functions definitions (core logic, not modifiable) ->
 	void Application::TickInternal(float deltaTime)
 	{

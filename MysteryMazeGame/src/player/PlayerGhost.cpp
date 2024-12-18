@@ -38,6 +38,10 @@ namespace mz
 		{
 			_mMoveInput.x = 1.f; //go right
 		}
+
+		//stop actor from going beyond game window edges
+		StopInputOnEdge();
+
 		//normalise input vector so speed is applied properly when player moves diagonaly
 		Normaliseinput();
 	}
@@ -46,6 +50,29 @@ namespace mz
 	{
 		Normalise(_mMoveInput);
 		LOG("move input is now: %f, %f", _mMoveInput.x, _mMoveInput.y);
+	}
+
+	void PlayerGhost::StopInputOnEdge()
+	{
+		//get actor Location
+		sf::Vector2f actorLocation = GetActorLocation();
+		if (actorLocation.x < 0 && _mMoveInput.x == -1) //if actor is on the edge and still moving left
+		{
+			_mMoveInput.x = 0.f; //then stop actor to move on x
+		}
+		if (actorLocation.x > GetWindowSize().x && _mMoveInput.x == 1.f) //if actor is on the edge and still moving right
+		{
+			_mMoveInput.x = 0.f; //then stop actor to move on x
+		}
+
+		if (actorLocation.y < 0 && _mMoveInput.y == -1) //if moves beyond the top edge
+		{
+			_mMoveInput.y = 0.f; //then stop actor to move on y
+		}
+		if (actorLocation.y > GetWindowSize().y && _mMoveInput.y == 1.f) //if moves beyond bottom edge
+		{
+			_mMoveInput.y = 0.f; //then stop actor to move on y
+		}
 	}
 
 	void PlayerGhost::ApplyInput(float deltaTime)

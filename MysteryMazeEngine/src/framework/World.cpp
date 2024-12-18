@@ -1,6 +1,7 @@
 #include "framework/World.h"
 #include "framework/Core.h"
 #include "framework/Actor.h"
+#include "framework/Application.h"
 
 namespace mz
 {
@@ -76,6 +77,11 @@ namespace mz
 		//is empty for the destructor
 	}
 
+
+	sf::Vector2u World::GetWindowSize() const
+	{
+		return _mOwnedByApp->GetWindowSize();
+	}
 
 	void World::StartPlay() //customer modifiable
 	{

@@ -38,6 +38,8 @@ namespace mz
 			return newActor;
 		}*/ //it can be implemented in different part of the code below
 
+		sf::Vector2u GetWindowSize() const;
+
 	private:
 		//customer modifiable
 		void StartPlay(); 

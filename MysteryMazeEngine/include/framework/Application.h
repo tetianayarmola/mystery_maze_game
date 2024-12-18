@@ -26,6 +26,8 @@ namespace mz
 		//using weak pointer because it is not supposed to have an ownership
 		weak<WorldType> LoadWorld();
 
+		sf::Vector2u GetWindowSize() const;
+
 	private:
 		//function to update based on time
 		void TickInternal(float deltaTime);//template function (not modifiable)

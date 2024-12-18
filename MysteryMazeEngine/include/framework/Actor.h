@@ -38,6 +38,9 @@ namespace mz
 
 		sf::Vector2f GetActorForwardDirection() const;
 		sf::Vector2f GetActorRightDirection() const;
+
+		// window size and boundaries
+		sf::Vector2u GetWindowSize() const;
 	private:
 		void CenterPivit();
 		//specify the owner locally as well

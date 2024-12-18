@@ -2,6 +2,7 @@
 #include "framework/Core.h"
 #include "framework/AssetManager.h"
 #include "framework/MathUtility.h"
+#include "framework/World.h"
 
 namespace mz
 {
@@ -120,6 +121,14 @@ namespace mz
 	{
 		return RotationToVector(GetActorRotation() + 90.f);
 	}
+
+
+	//get size of the window
+	sf::Vector2u Actor::GetWindowSize() const
+	{
+		return _mOwnedByWorld->GetWindowSize();
+	}
+
 	void Actor::CenterPivit()
 	{
 		//gets the bounts of the sprite

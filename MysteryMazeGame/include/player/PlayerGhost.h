@@ -16,6 +16,7 @@ namespace mz
 	private:
 		void HandleInput();
 		void Normaliseinput();
+		void StopInputOnEdge();
 		void ApplyInput(float deltaTime);
 		sf::Vector2f _mMoveInput;
 		float _mSpeed;
