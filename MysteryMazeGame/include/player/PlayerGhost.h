@@ -15,6 +15,7 @@ namespace mz
 		float GetSpeed() const { return _mSpeed; }
 	private:
 		void HandleInput();
+		void Normaliseinput();
 		void ApplyInput(float deltaTime);
 		sf::Vector2f _mMoveInput;
 		float _mSpeed;

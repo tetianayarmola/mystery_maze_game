@@ -1,5 +1,5 @@
 #include "player/PlayerGhost.h"
-
+#include "framework/MathUtility.h"
 namespace mz
 {
 	PlayerGhost::PlayerGhost(World* ownedByWorld, const std::string& path)
@@ -30,7 +30,7 @@ namespace mz
 		{
 			_mMoveInput.y = 1.f; //go down
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // A
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) // A
 		{
 			_mMoveInput.x = -1.f; //go left
 		}
@@ -38,6 +38,14 @@ namespace mz
 		{
 			_mMoveInput.x = 1.f; //go right
 		}
+		//normalise input vector so speed is applied properly when player moves diagonaly
+		Normaliseinput();
+	}
+
+	void PlayerGhost::Normaliseinput()
+	{
+		Normalise(_mMoveInput);
+		LOG("move input is now: %f, %f", _mMoveInput.x, _mMoveInput.y);
 	}
 
 	void PlayerGhost::ApplyInput(float deltaTime)
