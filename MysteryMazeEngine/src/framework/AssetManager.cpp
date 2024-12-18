@@ -1,5 +1,4 @@
 #include "framework/AssetManager.h"
-#include "framework/AssetManager.h"
 
 namespace mz
 {
@@ -27,7 +26,7 @@ namespace mz
 		//if texture was not found as loaded already, we load it
 		shared<sf::Texture> newTexture{ new sf::Texture }; //initialise with a new texture
 		//if we loaded texture successfully
-		if (newTexture->loadFromFile(path))
+		if (newTexture->loadFromFile(_mRootDirectory + path))
 		{
 			//then we put texture as a texture map
 			_mLoadedTextureMap.insert({path, newTexture}); //kay-value pair: path - key, texture - value
@@ -57,7 +56,13 @@ namespace mz
 		}
 	}
 
-	AssetManager::AssetManager()
+	void AssetManager::SetAssetRootDirectory(const std::string& directory)
+	{
+		_mRootDirectory = directory;
+	}
+
+	AssetManager::AssetManager() 
+		:_mRootDirectory{} //initialise root dir with nothing
 	{
 	}
 }

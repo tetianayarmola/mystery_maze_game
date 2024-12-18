@@ -1,7 +1,8 @@
 #include "gameFramework/GameApplication.h"
 #include "framework/World.h"
 #include "framework/Actor.h"
-#include "ghost/Ghost.h"
+#include "framework/AssetManager.h"
+#include "player/PlayerGhost.h"
 #include "config.h"
 
 mz::Application* GetApplication()
@@ -14,14 +15,19 @@ namespace mz
 	GameApplication::GameApplication()
 		: Application{600, 980, "Mystery Maze", sf::Style::Titlebar | sf::Style::Close} // titlebar or close, no resize 
 	{
+		// calling AssetManager function to set root dir for assets
+		AssetManager::Get().SetAssetRootDirectory(GetResourceDir());
 		//load and run the World in game
 		weak<World> newWorld = LoadWorld<World>();
 
 		//because it is a weak reference, we have to lock it first
 		//then spawn a regular actor
 		newWorld.lock()->SpawnActor<Actor>();
-		testPlayerGhost = newWorld.lock()->SpawnActor<Ghost>();
-		testPlayerGhost.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png"); //GetResourceDir() is defined in config file
+		testPlayerGhost = newWorld.lock()->SpawnActor<PlayerGhost>();
+
+		// !- texture now set in the Player.Ghost.h constructor
+		//testPlayerGhost.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png"); //GetResourceDir() is defined in config file
+
 		testPlayerGhost.lock()->SetActorLocation(sf::Vector2f(300.f, 490.f)); //move to the centre of the screen
 		testPlayerGhost.lock()->SetActorRotation(0.f); //rotate 90 degree
 		testPlayerGhost.lock()->SetVelocity(sf::Vector2f(0.f, -200.f)); //moving up

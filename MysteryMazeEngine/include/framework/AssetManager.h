@@ -12,6 +12,8 @@ namespace mz
 		//texture loading functionality
 		shared<sf::Texture> LoadTexture(const std::string& path);
 		void CleanCycle();
+		//function asking client to specify root directory of assets
+		void SetAssetRootDirectory(const std::string& directory);
 	//protected constructor - allowing anyone else to construct but only inside of the class
 	protected:
 		AssetManager();
@@ -22,6 +24,6 @@ namespace mz
 		
 		//a list for texture load
 		Dictionary<std::string, shared<sf::Texture>> _mLoadedTextureMap;
-
+		std::string _mRootDirectory;
 	};
 }

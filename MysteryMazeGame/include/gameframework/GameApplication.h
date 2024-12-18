@@ -6,8 +6,8 @@ namespace mz
 {
 	//declare Actor class as we making reference to an Actor here
 	class Actor;
-	//same for Ghost
-	class Ghost;
+	//same for PlayerGhost
+	class PlayerGhost;
 	//class GameApplication inherit from Application
 	class GameApplication : public Application
 	{
@@ -17,6 +17,6 @@ namespace mz
 		virtual void Tick(float deltaTime) override;
 	private:
 		float counter;
-		weak<Ghost> testPlayerGhost;
+		weak<PlayerGhost> testPlayerGhost;
 	};
 }
