@@ -3,9 +3,14 @@
 #caution - reference current directory path /src/main.cpp, or it will output an error
 add_executable(${MYSTERY_MAZE_GAME_TARGET_NAME}
 	#tells to includr game source file
-	${CMAKE_CURRENT_SOURCE_DIR}/src/GameFramework/GameApplication.cpp
 	${CMAKE_CURRENT_SOURCE_DIR}/include/GameFramework/GameApplication.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/GameFramework/GameApplication.cpp
 
+	${CMAKE_CURRENT_SOURCE_DIR}/include/ghost/Ghost.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/ghost/Ghost.cpp
+
+	${CMAKE_CURRENT_SOURCE_DIR}/include/player/PlayerGhost.h
+	${CMAKE_CURRENT_SOURCE_DIR}/src/player/PlayerGhost.cpp
 )
 
 # PUBLICLY including header file Application.h so it can be seen by Application.cpp and other files

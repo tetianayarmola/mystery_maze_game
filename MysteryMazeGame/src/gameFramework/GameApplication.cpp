@@ -1,6 +1,7 @@
 #include "gameFramework/GameApplication.h"
 #include "framework/World.h"
 #include "framework/Actor.h"
+#include "ghost/Ghost.h"
 #include "config.h"
 
 mz::Application* GetApplication()
@@ -19,10 +20,11 @@ namespace mz
 		//because it is a weak reference, we have to lock it first
 		//then spawn a regular actor
 		newWorld.lock()->SpawnActor<Actor>();
-		_mActorToDestroy = newWorld.lock()->SpawnActor<Actor>();
-		_mActorToDestroy.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png"); //GetResourceDir() is defined in config file
-		_mActorToDestroy.lock()->SetActorLocation(sf::Vector2f(300.f, 490.f)); //move to the centre of the screen
-		_mActorToDestroy.lock()->SetActorRotation(90.f); //rotate 90 degree
+		testPlayerGhost = newWorld.lock()->SpawnActor<Ghost>();
+		testPlayerGhost.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png"); //GetResourceDir() is defined in config file
+		testPlayerGhost.lock()->SetActorLocation(sf::Vector2f(300.f, 490.f)); //move to the centre of the screen
+		testPlayerGhost.lock()->SetActorRotation(0.f); //rotate 90 degree
+		testPlayerGhost.lock()->SetVelocity(sf::Vector2f(0.f, -200.f)); //moving up
 		counter = 0;
 	}
 	void GameApplication::Tick(float deltaTime)
@@ -34,11 +36,11 @@ namespace mz
 		{
 			//if actor is not destroyed already
 			//expired means that the corresponding pointer is removed, thus does not exist anymore
-			if (!_mActorToDestroy.expired()) 
+			if (!testPlayerGhost.expired()) 
 			{
 				//lock it first to get a corresponding share pointer
 				// and ask the Actor to be destroyed
-				_mActorToDestroy.lock()->Destroy();
+				testPlayerGhost.lock()->Destroy();
 
 			}
 			

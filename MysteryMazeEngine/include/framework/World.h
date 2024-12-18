@@ -5,8 +5,9 @@
 
 namespace mz 
 {
-	//declare Actor class so World can work with it
+	//declare classes World owning so World can work with it
 	class Actor;
+	class Ghost;
 	class World;
 	class Application; //declare class which World will belong to
 	//Also declare class World in Application.h to tell it how to work with World.
