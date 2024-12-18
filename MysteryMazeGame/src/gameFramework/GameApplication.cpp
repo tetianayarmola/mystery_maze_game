@@ -13,7 +13,7 @@ mz::Application* GetApplication()
 namespace mz
 {
 	GameApplication::GameApplication()
-		: Application{600, 980, "Mystery Maze", sf::Style::Titlebar | sf::Style::Close} // titlebar or close, no resize 
+		: Application{1400, 1200, "Mystery Maze", sf::Style::Titlebar | sf::Style::Close} // titlebar or close, no resize 
 	{
 		// calling AssetManager function to set root dir for assets
 		AssetManager::Get().SetAssetRootDirectory(GetResourceDir());
@@ -28,10 +28,8 @@ namespace mz
 		// !- texture now set in the Player.Ghost.h constructor
 		//testPlayerGhost.lock()->SetTexture(GetResourceDir() + "SpaceShooterRedux/PNG/playerShip2_red.png"); //GetResourceDir() is defined in config file
 
-		testPlayerGhost.lock()->SetActorLocation(sf::Vector2f(300.f, 490.f)); //move to the centre of the screen
-		testPlayerGhost.lock()->SetActorRotation(0.f); //rotate 90 degree
-		testPlayerGhost.lock()->SetVelocity(sf::Vector2f(0.f, -200.f)); //moving up
-		counter = 0;
+		testPlayerGhost.lock()->SetActorLocation(sf::Vector2f(700.f, 600.f)); //move to the centre of the screen
+		testPlayerGhost.lock()->SetActorRotation(0.f); //rotate 90 degree                       
 	}
 	void GameApplication::Tick(float deltaTime)
 	{
